@@ -1,0 +1,56 @@
+<div class="container" *ngIf="todos.length >=2">
+  <div class="row justify-content-center">
+    <div class="col-7">
+      <app-todo-finder [todoCollection]="todos" (onResult)="parseFindResult($event)"></app-todo-finder>
+    </div>
+    <div class="col-2">
+      <label for="sort">Sort by</label>
+      <select id="sort" class="form-select" #sortType (change)="sort(sortType.value)">
+        <option selected>None</option>
+        <option value="up">A-Z</option>
+        <option value="rev">Z-A</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-4" *ngFor="let todo of todos">
+            <app-todo [title]="todo.title"
+                      [description]="todo.description"
+                      [isSelected]="todo.isSelected"
+                      (dblclick)="selectTodo(todo)"></app-todo>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="container-fluid">
+        <div class="row border border-2 rounded p-4 justify-content-center">
+          <div class="col-12 mb-3">
+            <label class="form-label" for="todo-title">Todo name</label>
+            <input type="text" class="form-control" id="todo-title" #titleForm>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="todo-description">Todo description</label>
+            <input type="text" class="form-control" id="todo-description" #titleDescription>
+          </div>
+          <div class="col-auto mt-5">
+            <button class="btn btn-primary"
+                    (click)="onAddTodo(titleForm.value, titleDescription.value)">Add todo
+            </button>
+            <button class="btn btn-danger mx-3"
+                    *ngIf="selectedTodos.length > 0"
+                    (click)="deleteTodos()">
+              Remove {{selectedTodos.length === 1 ? "Todo" : "Todos"}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

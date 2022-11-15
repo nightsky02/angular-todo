@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row justify-content-center align-items-end">
+    <div class="col-3">
+      <input type="text" class="form-control" placeholder="Find" #findData (input)="onWrite(findData.value, findCategory.value)">
+    </div>
+    <div class="col-3">
+      <label for="find-type">Find by</label>
+      <select class="form-select" id="find-type" #findCategory>
+        <option selected>Title</option>
+        <option>Description</option>
+      </select>
+    </div>
+  </div>
+</div>

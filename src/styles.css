@@ -1,0 +1,9 @@
+@import url('../uilib/bootstrap.min.css');
+
+.todo-description{
+  height: 150px;
+  overflow: auto;
+}
+.todo-description, .todo-title{
+  word-break: break-word;
+}
